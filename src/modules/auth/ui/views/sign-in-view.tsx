@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { OctagonAlertIcon } from "lucide-react";
+import { FaGoogle } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
@@ -57,6 +59,23 @@ export const SignInView = () => {
             }
         });
     };
+
+    const onSocial = (provider: "github" | "google") => {
+            setError(null);
+            setPending(true);
+    
+            authClient.signIn.social({
+                provider: provider,
+                callbackURL: "/",
+            }, {
+                onSuccess: () => {
+                    setPending(false);
+                },
+                onError: (error) => {
+                    setError(error.error.message);
+                }
+            });
+        };
 
     return (
         <div className="flex flex-col gap-6">
@@ -128,10 +147,16 @@ export const SignInView = () => {
                                     </span>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <Button disabled={pending} variant="outline" className="w-full" type="button">
+                                    <Button disabled={pending} variant="outline" className="w-full" type="button"
+                                        onClick = {() => onSocial("google")}
+                                    >
+                                        <FaGoogle />
                                         Google
                                     </Button>
-                                    <Button disabled={pending} variant="outline" className="w-full" type="button">
+                                    <Button disabled={pending} variant="outline" className="w-full" type="button"
+                                        onClick = {() => onSocial("github")}
+                                    >
+                                        <FaGithub />
                                         GitHub
                                     </Button>
                                     
