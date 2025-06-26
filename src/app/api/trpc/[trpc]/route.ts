@@ -1,6 +1,7 @@
+// File: app/api/trpc/[trpc]/route.ts
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
-import { createTRPCContext } from '@/trcp/init';
-import { appRouter } from '@/trcp/routers/_app';
+import { appRouter } from '@/trpc/routers/_app';
+import { createTRPCContext } from '@/trpc/init';
 
 const handler = (req: Request) =>
   fetchRequestHandler({
@@ -9,4 +10,5 @@ const handler = (req: Request) =>
     router: appRouter,
     createContext: createTRPCContext,
   });
+
 export { handler as GET, handler as POST };

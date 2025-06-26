@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import { TRPCReactProvider } from "@/trcp/client"
+import { TRPCReactProvider } from "@/trpc/client"
 
 import "./globals.css";
 
