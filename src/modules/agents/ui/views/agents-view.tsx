@@ -5,6 +5,8 @@ import { useQuery, useSuspenseQuery } from "@tanstack/react-query"
 import { useTRPC } from "@/trpc/client"
 import { LoadingState } from "@/components/loading-state"
 import { ErrorState } from "@/components/error-state"
+import { ResponsiveDialog } from "@/components/responsive-dialog"
+import { Button } from "@/components/ui/button"
 
 export const AgentsViews = () => {
     const trcp = useTRPC()
@@ -32,6 +34,15 @@ export const AgentsViews = () => {
 
     return (
         <div>
+            <ResponsiveDialog 
+                title="Responsive text"
+                description="Responsive description"
+                open
+                onOpenChange={() => {}}
+            />
+             <Button>
+                Some Action
+             </Button>
             {JSON.stringify(data, null, 2)}
         </div>
     )
