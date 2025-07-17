@@ -97,7 +97,7 @@ export const agentsRouter = createTRPCRouter({
                     search ? ilike(agents.name, `%${search}%`) : undefined,
                 )
             )
-            .orderBy(desc(agents.createAt), desc(agents.id))
+            .orderBy(desc(agents.createdAt), desc(agents.id))
             .limit(pageSize)
             .offset((page - 1) * pageSize);
 
