@@ -38,7 +38,7 @@ const Page = async ({ searchParams } : Props) => {
       <> 
         <MeetingsListHeader /> 
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <Suspense fallback={<LoadingState title="Loading Agents" description="This may take a few seconds" />}>
+            <Suspense fallback={<LoadingState title="Loading Meetings" description="This may take a few seconds" />}>
                 <ErrorBoundary fallback={<ErrorState
                                                 title="Error Loading Meetings"
                                                 description="Something went wrong"

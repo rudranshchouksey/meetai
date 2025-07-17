@@ -29,7 +29,7 @@ export const MeetingIdViewHeader = ({
     meetingName, 
     onEdit, 
     onRemove 
-}: Props) => { 
+}: Props) => {
    return (
     <div className="flex items-center justify-between">
         <Breadcrumb>
@@ -45,7 +45,7 @@ export const MeetingIdViewHeader = ({
                     <ChevronRightIcon />
                 </BreadcrumbSeparator>
                 <BreadcrumbItem>
-                    <BreadcrumbLink asChild className="font-medium text-xl text=foreground">
+                    <BreadcrumbLink asChild className="font-medium text-xl text-foreground">
                         <Link href={`/meetings/${meetingid}`}>
                             {meetingName}
                         </Link>
