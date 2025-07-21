@@ -68,7 +68,7 @@ export const DashboardCommand = ({ open, setOpen }: Props) => {
                             No agents found
                         </span>
                     </CommandEmpty>
-                    {meetings.data?.items.map((agent) => (
+                    {agents.data?.items.map((agent) => (
                         <CommandItem
                             onSelect={() => {
                                 router.push('/agents/${agent.id}')

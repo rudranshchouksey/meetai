@@ -23,7 +23,7 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import path from "path";
+import Image from "next/image";
 
 const formSchema = z
   .object({
@@ -57,7 +57,7 @@ export const SignUpView = () => {
         setError(null);
         setPending(true);
 
-        const { error } = await authClient.signUp.email({
+        await authClient.signUp.email({
             name: data.name,
             email: data.email,
             password: data.password,
@@ -221,7 +221,7 @@ export const SignUpView = () => {
                         </form>
                     </Form>
                     <div className="bg-radial from-green-700 to-green-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center">
-                        <img src="/logo.svg" alt="Image" className="h-[92px] w-[92px]"/>
+                        <Image src="/logo.svg" alt="Image" className="h-[92px] w-[92px]"/>
                         <p className="text-2xl font-semibold text-white">
                             Meet.AI
                         </p>

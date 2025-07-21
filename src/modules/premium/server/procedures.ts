@@ -3,8 +3,7 @@ import { eq, count } from "drizzle-orm";
 import { db } from "@/db";
 import { agents, meetings } from "@/db/schema";
 import { polarClient } from "@/lib/polar";
-import { 
-    baseProcedure, 
+import {  
     createTRPCRouter,
     protectedProcedure,
 } from "@/trpc/init";

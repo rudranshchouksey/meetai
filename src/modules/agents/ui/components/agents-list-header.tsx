@@ -6,7 +6,6 @@ import { NewAgentDialog } from "./new-agent-dialog"
 import { useState } from "react"
 import { useAgentsFilters } from "../../hooks/use-agents-filters.js"
 import { AgentsSearchFilters } from "./agents-search-filters"
-import { set } from "date-fns"
 import { DEFAULT_PAGE } from "@/constants"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 

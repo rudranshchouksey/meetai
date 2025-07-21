@@ -24,7 +24,7 @@ export const Transcript = ({ meetingId }: Props) => {
     )
 
     return (
-        <div className="bg-white rounded-lg border px-4 py-5 flex flexx-col gap-y-4 w-full">
+        <div className="bg-white rounded-lg border px-4 py-5 flex flex-col gap-y-4 w-full">
             <p className="text-sm font-medium">Transcript</p>
             <div className="relative">
                 <Input 
@@ -46,10 +46,9 @@ export const Transcript = ({ meetingId }: Props) => {
                                 <div className="flex gap-x-2 items-center">
                                     <Avatar className="size-6">
                                         <AvatarImage 
-                                            src={item.user.image ?? generateAvatarUri({
-                                                seed: item.user.name,
-                                                variant: "initials"
-                                            })}
+                                            src={typeof item.user.image === "string"
+                                                    ? item.user.image
+                                                    : generateAvatarUri({ seed: item.user.name, variant: "initials" })}
                                             alt="User Avatar"
                                         />
                                     </Avatar>

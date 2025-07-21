@@ -61,7 +61,7 @@ export const UpgradeView = () => {
                                         ? product.prices[0].priceAmount / 100
                                         : 0
                                 }
-                                description={product.description}
+                                description={product.description ?? undefined}
                                 priceSuffix={`/${product.prices[0].recurringInterval}`}
                                 features={product.benefits.map(
                                     (benefit) => benefit.description
