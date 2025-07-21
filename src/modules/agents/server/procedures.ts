@@ -1,6 +1,6 @@
 import { db } from "@/db"
 import { agents } from "@/db/schema"
-import { createTRPCRouter, baseProcedure, protectedProcedure } from "@/trpc/init"
+import { createTRPCRouter, baseProcedure, protectedProcedure, premiumProcedure } from "@/trpc/init"
 import { agentsInsertSchema, agentsUpdateSchema } from "../schemas";
 import { z } from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, sql } from "drizzle-orm";
@@ -119,14 +119,16 @@ export const agentsRouter = createTRPCRouter({
             totalPages,
         };
     }),
-    create: protectedProcedure.input(agentsInsertSchema).mutation(async ({ input, ctx }) => {
-        const [createdAgent] = await db
-            .insert(agents)
-            .values({
-                ...input,
-                userId: ctx.auth.user.id,
-            })
-            .returning()
+    create: premiumProcedure("agents")
+        .input(agentsInsertSchema)
+        .mutation(async ({ input, ctx }) => {
+            const [createdAgent] = await db
+                .insert(agents)
+                .values({
+                    ...input,
+                    userId: ctx.auth.user.id,
+                })
+                .returning()
 
         return createdAgent    
     }),

@@ -1,7 +1,7 @@
 import { db } from "@/db"
 import { agents, meetings, user } from "@/db/schema"
 import JSONL from "jsonl-parse-stringify";
-import { createTRPCRouter, baseProcedure, protectedProcedure } from "@/trpc/init"
+import { createTRPCRouter, baseProcedure, protectedProcedure, premiumProcedure } from "@/trpc/init"
 import { z } from "zod";
 import { and, count, desc, eq, getTableColumns, ilike, inArray, sql } from "drizzle-orm";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
@@ -59,7 +59,7 @@ export const meetingsRouter = createTRPCRouter({
                 .from(user)
                 .where(inArray(user.id, speakerIds))
                 .then((users) => {
-                    users.map((user) => ({
+                    return users.map((user) => ({
                         ...user,
                         image:
                             user.image ??
@@ -72,7 +72,7 @@ export const meetingsRouter = createTRPCRouter({
                 .from(agents)
                 .where(inArray(agents.id, speakerIds))
                 .then((agents) => {
-                    agents.map((agent) => ({
+                    return agents.map((agent) => ({
                         ...agent,
                         image:
                             user.image ??
@@ -262,7 +262,9 @@ export const meetingsRouter = createTRPCRouter({
             totalPages,
         };
     }),
-    create: protectedProcedure.input(meetingsInsertSchema).mutation(async ({ input, ctx }) => {
+    create: premiumProcedure("meetings")
+        .input(meetingsInsertSchema)
+        .mutation(async ({ input, ctx }) => {
             const [createdMeeting] = await db
                 .insert(meetings)
                 .values({

@@ -18,6 +18,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DashboradUserButton } from "./dashboard-user-button";
+import { DashboardTrial } from "./dashborad-trial";
 
 const firstSection = [
     {
@@ -107,6 +108,7 @@ const DashboardSidebar = () => {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter className="text-white">
+                <DashboardTrial />
                 <DashboradUserButton />
                 <p className="text-xs text-center">© 2024 Meet.AI</p>
             </SidebarFooter>
