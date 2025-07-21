@@ -6,7 +6,7 @@ import { useTRPC } from "@/trpc/client"
 import { authClient } from "@/lib/auth-client"
 import { ErrorState } from "@/components/error-state"
 import { LoadingState } from "@/components/loading-state"
-import { PricingCard } from "./components/pricing-card"
+import { PricingCard } from "../components/pricing-card"
 
 export const UpgradeView = () => {
     const trpc = useTRPC()
@@ -31,11 +31,11 @@ export const UpgradeView = () => {
                 </h5>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     {products.map((product) => {
-                        const isCurrentProduct = currentSubscription?.id === products.id
+                        const isCurrentProduct = currentSubscription?.id === product.id
                         const isPremium = !!currentSubscription
 
                         let buttonText = "Upgrade"
-                        let onClick = () => authClient.checkout({ products: [products.id] })
+                        let onClick = () => authClient.checkout({ products: [product.id] })
 
                         if (isCurrentProduct) {
                             buttonText = "Manage"
