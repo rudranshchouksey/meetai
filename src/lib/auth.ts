@@ -8,6 +8,10 @@ import * as schema from "@/db/schema";
 import { polarClient } from "./polar"
  
 export const auth = betterAuth({
+    trustedOrigins: [
+    "http://localhost:3000",
+    "https://meetai-swart.vercel.app", // ✅ Required for Vercel
+  ],
     plugins: [
         polar({
             client: polarClient,
