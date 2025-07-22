@@ -73,7 +73,7 @@ export const meetingProcessing = inngest.createFunction(
           return {
             ...item,
             user: {
-              name: "Unlnown",
+              name: "UnKnown",
             },
           }
         }
